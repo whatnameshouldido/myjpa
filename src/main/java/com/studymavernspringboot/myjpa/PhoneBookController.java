@@ -1,6 +1,5 @@
 package com.studymavernspringboot.myjpa;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,7 @@ public class PhoneBookController {
     @Autowired
     private IPhoneBookService<IPhoneBook> phoneBookService;
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<IPhoneBook> insertPB(@RequestBody PhoneBookRequest dto) {
         try {
             if (dto == null) {

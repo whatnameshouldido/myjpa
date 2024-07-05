@@ -34,7 +34,6 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
                 .id(0L)
                 .name(name).category(category)
                 .phoneNumber(phoneNumber).email(email).build();
-//        IPhoneBook result = this.phoneBookJpaRepository.saveAndFlush(phoneBook);
         return this.insert(phoneBook);
     }
 
@@ -63,11 +62,11 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
     @Override
     public boolean remove(Long id) {
         IPhoneBook find = this.findById(id);
-        if ( find != null ) {
-            this.phoneBookJpaRepository.deleteById(id);
-            return true;
+        if ( find == null ) {
+            return false;
         }
-        return false;
+        this.phoneBookJpaRepository.deleteById(id);
+        return true;
     }
 
     @Override

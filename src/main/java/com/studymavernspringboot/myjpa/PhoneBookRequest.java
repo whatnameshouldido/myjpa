@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PhoneBookRequest implements IPhoneBook {
-//    @JsonIgnore
+    @JsonIgnore
     private Long id;
 
     @NotBlank

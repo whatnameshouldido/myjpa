@@ -1,7 +1,5 @@
 package com.studymavernspringboot.myjpa;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-
 public enum ECategory {
     Friends(0),
     Families(1),
@@ -10,6 +8,7 @@ public enum ECategory {
     Hobbies(4);
 
     private final Integer value;
+
     ECategory(Integer value) {
         this.value = value;
     }
