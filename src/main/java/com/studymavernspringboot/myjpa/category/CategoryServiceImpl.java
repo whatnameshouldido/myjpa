@@ -51,13 +51,22 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public ICategory insert(ICategory category) throws Exception {
-        if (category == null) {
+        if (!isValidInsert(category)) {
             return null;
         }
         CategoryEntity entity = CategoryEntity.builder()
                 .id(0L).name(category.getName()).build();
         CategoryEntity result = this.categoryJpaRepository.saveAndFlush(entity);
         return result;
+    }
+
+    private boolean isValidInsert(ICategory category) {
+        if (category == null) {
+            return false;
+        } else if (category.getName() == null || category.getName().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     @Override

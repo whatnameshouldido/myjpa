@@ -19,4 +19,10 @@ public class CategoryEntity implements ICategory{
     @NotNull
     @Column(length = 20, unique = true)
     private String name;
+
+    @Override
+    public String toString() {
+        return String.format("ID:%6d, 이름:%s"
+                , this.id, this.name);
+    }
 }
