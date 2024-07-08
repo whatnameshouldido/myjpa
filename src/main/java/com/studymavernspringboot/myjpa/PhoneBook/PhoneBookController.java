@@ -1,4 +1,4 @@
-package com.studymavernspringboot.myjpa;
+package com.studymavernspringboot.myjpa.PhoneBook;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

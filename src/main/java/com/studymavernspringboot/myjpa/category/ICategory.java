@@ -1,6 +1,6 @@
 package com.studymavernspringboot.myjpa.category;
 
-import com.studymavernspringboot.myjpa.IPhoneBook;
+import com.studymavernspringboot.myjpa.PhoneBook.IPhoneBook;
 
 public interface ICategory {
     Long getId();
@@ -9,7 +9,7 @@ public interface ICategory {
     String getName();
     void setName(String name);
 
-    default void copyFields(IPhoneBook from) {
+    default void copyFields(ICategory from) {
         if ( from == null ) {
             return;
         }
@@ -18,15 +18,6 @@ public interface ICategory {
         }
         if ( from.getName() != null && !from.getName().isEmpty() ) {
             this.setName(from.getName());
-        }
-        if ( from.getCategory() != null ) {
-            this.setCategory(from.getCategory());
-        }
-        if ( from.getPhoneNumber() != null && !from.getPhoneNumber().isEmpty() ) {
-            this.setPhoneNumber(from.getPhoneNumber());
-        }
-        if ( from.getEmail() != null && !from.getEmail().isEmpty() ) {
-            this.setEmail(from.getEmail());
         }
     }
 }

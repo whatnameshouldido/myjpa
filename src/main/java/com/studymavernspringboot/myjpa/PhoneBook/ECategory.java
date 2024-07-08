@@ -1,4 +1,4 @@
-package com.studymavernspringboot.myjpa;
+package com.studymavernspringboot.myjpa.PhoneBook;
 
 public enum ECategory {
     Friends(0),

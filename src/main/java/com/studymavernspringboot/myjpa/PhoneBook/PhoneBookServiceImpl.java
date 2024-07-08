@@ -1,4 +1,4 @@
-package com.studymavernspringboot.myjpa;
+package com.studymavernspringboot.myjpa.PhoneBook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
@@ -26,6 +25,17 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
             list.add( (IPhoneBook) entity);
         }
         return list;
+    }
+
+    private List<IPhoneBook> getIPhoneBookList(List<PhoneBookEntity> list) {
+        if (list == null || list.size() <= 0) {
+            return new ArrayList<>();
+        }
+        List<IPhoneBook> result = new ArrayList<>();
+        for (PhoneBookEntity entity : list) {
+            result.add((IPhoneBook) entity);
+        }
+        return result;
     }
 
     @Override
@@ -104,10 +114,7 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
         if (findCategory == null) {
             return new ArrayList<>();
         }
-        List<PhoneBookEntity> list = this.phoneBookJpaRepository.findAllByCategory(findCategory);
-        List<IPhoneBook> result = list.stream()
-                .map(x -> (IPhoneBook)x)
-                .toList();
+        List<IPhoneBook> result = this.getIPhoneBookList(this.phoneBookJpaRepository.findAllByCategory(findCategory));
         return result;
         }
 
@@ -116,10 +123,7 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
         if (findPhone == null || findPhone.isEmpty()) {
             return new ArrayList<>();
         }
-        List<PhoneBookEntity> list = this.phoneBookJpaRepository.findAllByPhoneNumberContains(findPhone);
-        List<IPhoneBook> result = list.stream()
-                .map(item -> (IPhoneBook)item)
-                .toList();
+        List<IPhoneBook> result = this.getIPhoneBookList(this.phoneBookJpaRepository.findAllByPhoneNumberContains(findPhone));
         return result;
         }
 
@@ -128,10 +132,7 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
         if (findEmail == null || findEmail.isEmpty()) {
             return new ArrayList<>();
         }
-        List<PhoneBookEntity> list = this.phoneBookJpaRepository.findAllByEmailContains(findEmail);
-        List<IPhoneBook> result = list.stream()
-                .map(node -> (IPhoneBook)node)
-                .collect(Collectors.toUnmodifiableList());
+        List<IPhoneBook> result = this.getIPhoneBookList(this.phoneBookJpaRepository.findAllByEmailContains(findEmail));
         return result;
         }
 }

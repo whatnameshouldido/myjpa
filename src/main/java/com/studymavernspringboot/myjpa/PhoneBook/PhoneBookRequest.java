@@ -1,4 +1,4 @@
-package com.studymavernspringboot.myjpa;
+package com.studymavernspringboot.myjpa.PhoneBook;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

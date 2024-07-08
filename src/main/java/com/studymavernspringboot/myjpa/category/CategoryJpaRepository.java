@@ -2,5 +2,10 @@ package com.studymavernspringboot.myjpa.category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CategoryJpaRepository extends JpaRepository {
+import java.util.List;
+import java.util.Optional;
+
+public interface CategoryJpaRepository extends JpaRepository <CategoryEntity, Long>{
+    Optional<CategoryEntity> findByName(String name);
+    List<CategoryEntity> findAllByNameContains(String name);
 }
