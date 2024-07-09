@@ -1,9 +1,5 @@
 package com.studymavernspringboot.myjpa.category;
 
-import com.studymavernspringboot.myjpa.PhoneBook.ECategory;
-import com.studymavernspringboot.myjpa.PhoneBook.IPhoneBook;
-import com.studymavernspringboot.myjpa.PhoneBook.IPhoneBookService;
-import com.studymavernspringboot.myjpa.PhoneBook.PhoneBookRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

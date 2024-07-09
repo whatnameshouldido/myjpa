@@ -1,5 +1,7 @@
 package com.studymavernspringboot.myjpa.PhoneBook;
 
+import com.studymavernspringboot.myjpa.category.CategoryEntity;
+import com.studymavernspringboot.myjpa.category.ICategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,15 +38,6 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
             result.add((IPhoneBook) entity);
         }
         return result;
-    }
-
-    @Override
-    public IPhoneBook insert(String name, ECategory category, String phoneNumber, String email) throws Exception {
-        PhoneBookDto phoneBook = PhoneBookDto.builder()
-                .id(0L)
-                .name(name).category(category)
-                .phoneNumber(phoneNumber).email(email).build();
-        return this.insert(phoneBook);
     }
 
     @Override
@@ -110,11 +103,13 @@ public class PhoneBookServiceImpl implements IPhoneBookService<IPhoneBook> {
     }
 
     @Override
-    public List<IPhoneBook> getListFromCategory(ECategory findCategory) {
+    public List<IPhoneBook> getListFromCategory(ICategory findCategory) {
         if (findCategory == null) {
             return new ArrayList<>();
         }
-        List<IPhoneBook> result = this.getIPhoneBookList(this.phoneBookJpaRepository.findAllByCategory(findCategory));
+        List<IPhoneBook> result = this.getIPhoneBookList(
+                this.phoneBookJpaRepository.findAllByCategory((CategoryEntity)findCategory)
+        );
         return result;
         }
 

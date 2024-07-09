@@ -1,5 +1,8 @@
 package com.studymavernspringboot.myjpa.PhoneBook;
 
+import com.studymavernspringboot.myjpa.category.CategoryDto;
+import com.studymavernspringboot.myjpa.category.CategoryEntity;
+import com.studymavernspringboot.myjpa.category.ICategory;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +20,8 @@ public class PhoneBookController {
 
     @Autowired
     private IPhoneBookService<IPhoneBook> phoneBookService;
+
+//    private ICategory
 
     @PostMapping
     public ResponseEntity<IPhoneBook> insertPB(@RequestBody PhoneBookRequest dto) {
@@ -117,7 +122,10 @@ public class PhoneBookController {
             if(category == null) {
                 return ResponseEntity.badRequest().build();
             }
-            List<IPhoneBook> result = this.phoneBookService.getListFromCategory(ECategory.integerOf(category));
+            CategoryEntity categoryEntity = CategoryEntity.builder()
+                    .id((Long.parseLong(category.toString())))
+                    .build();
+            List<IPhoneBook> result = this.phoneBookService.getListFromCategory(categoryEntity);
             if (result == null || result.size() <= 0) {
                 return ResponseEntity.notFound().build();
             }
