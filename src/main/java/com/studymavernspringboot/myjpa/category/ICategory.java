@@ -1,7 +1,5 @@
 package com.studymavernspringboot.myjpa.category;
 
-import com.studymavernspringboot.myjpa.PhoneBook.IPhoneBook;
-
 public interface ICategory {
     Long getId();
     void setId(Long id);
