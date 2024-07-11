@@ -37,6 +37,7 @@ public class CategoryControllerTest {
         assertThat(responseInsert2).isNotNull();
         assertThat(responseInsert2.getStatusCode()).isEqualTo(HttpStatus.OK);
         System.out.println("responseInsert2.getBody().getId() = " + responseInsert2.getBody().getId());
+        assertThat(responseInsert2.getBody()).isNotNull();
         assertThat(responseInsert2.getBody().getName()).isEqualTo("RestFull");
 
         Long insertId = responseInsert2.getBody().getId();
